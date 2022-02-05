@@ -13,3 +13,5 @@ mv */*.pdf ../tmp/pdfs
 mv * ../tmp/images
 mv ../tmp/pdfs ./
 mv ../tmp/images ./
+rm -r ../tmp
+cd ./pdfs; count=1; for f in {001..099}; do mv $count.pdf $f.pdf; let "count=$count+1"; done
