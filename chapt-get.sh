@@ -7,7 +7,7 @@ rm -f ./working/*
 name=$(echo $1 | cut -d "/" -f4)
 site=$1
 mid=$(curl -k -s $site | grep "chapter_list" | cut -d '"' -f7  | sed 's/.$//' | sed 's/^.//')
-echo $name $site $mid
+#echo $name $site $mid
 echo "Downloading $name from $site";
 curl -k -s $site | grep "chapter_list" | cut -d '"' -f16 > ./working/chaplist1.txt;
 for f in $(cat ./working/chaplist1.txt | sed 's/,/\n/g'); do 
@@ -22,8 +22,11 @@ for f in $(cat ./working/chaplist.txt); do
 	for x in {1..999}; do
 		stat=$(curl -sw '%{http_code}' -o ./output/$name/$f/$x.jpg https://cdn.readdetectiveconan.com/file/mangap/$mid/$cid/$x.jpg);
 		if [ $stat == 404 ]; then 
-			rm -f ./output/$name/$f/$x.jpg;
-			break;
+			stat=$(curl -sw '%{http_code}' -o ./output/$name/$f/$x.jpg https://cdn.readdetectiveconan.com/file/mangap/$mid/$cid/$x.jpeg);
+			if [ $stat == 404 ]; then 
+				rm -f ./output/$name/$f/$x.jpg;
+				break;
+			fi
 		fi
 	done
 done
