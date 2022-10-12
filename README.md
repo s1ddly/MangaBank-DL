@@ -7,7 +7,7 @@ You can run the below to install it:
 sudo apt-get update;  
 sudo apt-get install imagemagick;  
 ```  
-***Note: ****For some users, you may need to enable PDF writing for imagemagick*  
+**Note: ***For some users, you may need to enable PDF writing for imagemagick*  
 *To do this, update the file at* `/etc/ImageMagick-7/policy.xml` *and add the below text right above the* `</policymap>` *Line:*  
 `<policy domain="coder" rights="read | write" pattern="PDF" />`  
 More information for thsi config is available at https://stackoverflow.com/questions/52998331/imagemagick-security-policy-pdf-blocking-conversion
