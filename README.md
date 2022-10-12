@@ -10,7 +10,7 @@ sudo apt-get install imagemagick;
 *Note: For some users, you may need to enable PDF writing for imagemagick*  
 *To do this, update the file at* `/etc/ImageMagick-7/policy.xml` *and add the below text right above the* `</policymap>` *Line:*  
 `<policy domain="coder" rights="read | write" pattern="PDF" />`  
-More information for thsi config is available at https://stackoverflow.com/questions/52998331/imagemagick-security-policy-pdf-blocking-conversion
+More information for this config is available at https://stackoverflow.com/questions/52998331/imagemagick-security-policy-pdf-blocking-conversion
 ## How to run it
 In order to run the downloader, you need to execute the script, passing the URL or name of the manga as an argument.  
 I have outlined the argument matrix below:  
