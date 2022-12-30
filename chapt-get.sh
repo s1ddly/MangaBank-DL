@@ -9,7 +9,27 @@ site=$1
 mid=$(curl -k -s $site | grep "chapter_list" | cut -d '"' -f7  | sed 's/.$//' | sed 's/^.//')
 #echo $name $site $mid
 echo "Downloading $name from $site";
-curl -k -s $site | grep "chapter_list" | cut -d '"' -f18 > ./working/chaplist1.txt;
+#curl -k -s $site | grep "chapter_list" | cut -d '"' -f16 > ./working/chaplist1.txt;
+IFS='"' read -r -a array <<< $(curl -k -s $site | grep chapter_list)
+skip='false'
+oustr=''
+
+
+for element in "${array[@]}"
+do
+    if [[ $skip == 'false' ]]; then
+		if [[ $element == 'chapter_list' ]]; then
+			skip='true'
+		fi
+	elif [[ $skip == 'true' ]]; then
+		echo 'Identified chapter list on page'
+		skip='done'
+	elif [[ $skip == 'done' ]]; then
+		echo $element > ./working/chaplist1.txt
+		break;
+	fi
+done
+
 for f in $(cat ./working/chaplist1.txt | sed 's/,/\n/g'); do 
 	echo $f >> ./working/chaplist.txt; 
 done
