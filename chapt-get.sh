@@ -9,7 +9,7 @@ site=$1
 mid=$(curl -k -s $site | grep "chapter_list" | cut -d '"' -f7  | sed 's/.$//' | sed 's/^.//')
 #echo $name $site $mid
 echo "Downloading $name from $site";
-curl -k -s $site | grep "chapter_list" | cut -d '"' -f16 > ./working/chaplist1.txt;
+curl -k -s $site | grep "chapter_list" | cut -d '"' -f18 > ./working/chaplist1.txt;
 for f in $(cat ./working/chaplist1.txt | sed 's/,/\n/g'); do 
 	echo $f >> ./working/chaplist.txt; 
 done
