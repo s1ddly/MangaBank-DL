@@ -1,3 +1,4 @@
+**Mangabank has been shut down, unfortunately this code no longer works**
 # Hi and Welcome My Mangabank Downloader script
 Note, this script is designed to scrape and download manga from https://mangabank.xyz/
 ## Requirements
